@@ -65,8 +65,8 @@ This :ref:`action <config-action>` sends a GET request.
               - logger.log:
                   format: 'Response status: %d, Duration: %u ms'
                   args:
-                    - status_code
-                    - duration_ms
+                    - response->status_code
+                    - response->duration_ms
       # Short form
       - http_request.get: https://esphome.io
 
@@ -138,8 +138,9 @@ Configuration variables:
 
 This automation will be triggered when the HTTP request is finished and will supply these parameters:
 
-* ``status_code`` as ``int`` - http response code
-* ``duration_ms`` as ``uint32`` - time taken to complete the request
+* ``response->content_length`` as ``size_t`` - content size
+* ``response->status_code`` as ``int`` - http response code
+* ``response->duration_ms`` as ``uint32`` - time taken to complete the request
 
 .. code-block:: yaml
 
@@ -153,8 +154,8 @@ This automation will be triggered when the HTTP request is finished and will sup
                 - logger.log:
                     format: "Response status: %d, Duration: %u ms"
                     args:
-                      - status_code
-                      - duration_ms
+                      - response->status_code
+                      - response->duration_ms
 
 
 .. _http_request-examples:
