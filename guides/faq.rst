@@ -48,7 +48,7 @@ Tips for using ESPHome
                payload: double
 
 
-   For even more configuration templating, take a look at :ref:`config-substitutions`.
+   For even more configuration templating, take a look at :doc:`/components/substitutions`.
 
 2. If you want to see how ESPHome interprets your configuration, run
 
@@ -66,7 +66,7 @@ Tips for using ESPHome
 
 5. You can view the full list of command line interface options here: :doc:`/guides/cli`
 
-6. Use :ref:`substitutions <config-substitutions>` to reduce repetition in your configuration files.
+6. Use :doc:`/components/substitutions` to reduce repetition in your configuration files.
 
 .. |secret| replace:: ``!secret``
 .. _secret: https://www.home-assistant.io/docs/configuration/secrets/
@@ -374,6 +374,7 @@ And a docker compose file looks like this:
           # if needed, add esp device(s) as in command line examples above
           - /dev/ttyUSB0:/dev/ttyUSB0
           - /dev/ttyACM0:/dev/ttyACM0
+        # The host networking driver only works on Linux hosts, but is available as a Beta feature, on Docker Desktop version 4.29 and later.
         network_mode: host
         restart: always
 
@@ -384,9 +385,9 @@ And a docker compose file looks like this:
     By default ESPHome uses mDNS to show online/offline state in the dashboard view. So for that feature to work you
     need to enable host networking mode.
 
-    On MacOS the networking mode ("-net=host" option) doesn't work as expected. You have to use
-    another way to launch the dashboard with a port mapping option and use alternative to mDNS
-    to have the online/offline stat (see below)
+    The `host networking driver <https://docs.docker.com/network/drivers/host/>`_ only works on Linux hosts, but is available as a Beta feature, on Docker Desktop version 4.29 and later.
+
+    If you don't want to use the host networking driver, you have to use an alternative method described below.
 
     mDNS might not work if your Home Assistant server and your ESPHome nodes are on different subnets.
     If your router supports Avahi (eg. OpenWRT or pfSense), you are able to get mDNS working over different subnets
